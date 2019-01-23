@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ListItems</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+    <ion-card *ngFor="let tdl of mytodos">
+        <ion-card-header>
+          <ion-label>{{tdl.name}}</ion-label>
+          <ion-checkbox checked={{tdl.complete}}></ion-checkbox>
+        </ion-card-header>
+        <ion-card-content>
+          {{tdl.desc}}
+        </ion-card-content>
+      </ion-card>
 </ion-content>

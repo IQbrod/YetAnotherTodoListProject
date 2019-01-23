@@ -47,6 +47,7 @@ export class TodoServiceProvider {
         {
           uuid : "a1cd4568-590b-428b-989d-165f22365485",
           name : "Item 2-3",
+          desc : "It's a description bro",
           complete : true
         }
       ]
@@ -61,6 +62,10 @@ export class TodoServiceProvider {
 
   public getTodos(uuid:String) : Observable<TodoItem[]> {
     return Observable.of(this.data.find(d => d.uuid == uuid).items)
+  }
+
+  public getName(uuid:String) : Observable<String> {
+    return Observable.of(this.data.find(d => d.uuid == uuid).name)
   }
 
 
