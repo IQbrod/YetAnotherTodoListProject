@@ -5,13 +5,20 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card *ngFor="let tdl of mytodos">
-        <ion-card-header>
-          <ion-label>{{tdl.name}}</ion-label>
-          <ion-checkbox checked={{tdl.complete}}></ion-checkbox>
-        </ion-card-header>
-        <ion-card-content>
-          {{tdl.desc}}
-        </ion-card-content>
-      </ion-card>
+    <ion-list #slidingList>
+      <ion-item-sliding *ngFor="let tdl of mytodos">
+        <ion-item>
+            <ion-checkbox checked={{tdl.complete}}></ion-checkbox>
+            <ion-label>
+              <h2>{{tdl.name}}</h2>
+              <p>{{tdl.desc}}</p>
+            </ion-label>
+      </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)=delete(tdl.uuid)>
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 </ion-content>
