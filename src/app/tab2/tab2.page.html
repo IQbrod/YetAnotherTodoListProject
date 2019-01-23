@@ -12,14 +12,12 @@
     <ion-list-header>
       TODOLIST
     </ion-list-header>
-
     
-    <ion-item *ngFor="let tdl of todolists">
+    <ion-item *ngFor="let tdl of todolists" href="/list-items/{{tdl.uuid}}" routerDirection="forward">
       <ion-label>{{tdl.name}}</ion-label>
       <p item-end>{{tdl.items.length}}</p>
     </ion-item>
 
   </ion-list>
-
 
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoServiceProvider } from '../todo/todo.service';
 import { TodoList } from '../todo/todo.model';
+import { NavController } from '@ionic/angular';
+import { ListItemsPage } from '../list-items/list-items.page';
 
 @Component({
   selector: 'app-tab2',
@@ -10,7 +12,7 @@ import { TodoList } from '../todo/todo.model';
 export class Tab2Page implements OnInit {
   todolists : TodoList[] = [];
 
-  constructor(private todoService : TodoServiceProvider) {
+  constructor(private todoService : TodoServiceProvider, private navctrl : NavController) {
     this.todoService.getList().subscribe((t : TodoList[]) => {
       this.todolists = t;
     })
