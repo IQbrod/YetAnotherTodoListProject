@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoServiceProvider } from '../todo/todo.service';
 import { TodoList } from '../todo/todo.model';
 import { NavController } from '@ionic/angular';
-import { ListItemsPage } from '../list-items/list-items.page';
 
 @Component({
   selector: 'app-tab2',
@@ -11,6 +10,7 @@ import { ListItemsPage } from '../list-items/list-items.page';
 })
 export class Tab2Page implements OnInit {
   todolists : TodoList[] = [];
+  @ViewChild('slidingList') slidingList: any;
 
   constructor(private todoService : TodoServiceProvider, private navctrl : NavController) {
     this.todoService.getList().subscribe((t : TodoList[]) => {
@@ -20,5 +20,10 @@ export class Tab2Page implements OnInit {
 
   ngOnInit() {
     console.log("tab 2 initialisée");
+  }
+
+  async delete(tdid : String) {
+    this.todoService.deleteTodoList(tdid);
+    await this.slidingList.closeSlidingItems()
   }
 }

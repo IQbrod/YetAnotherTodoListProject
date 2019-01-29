@@ -82,4 +82,8 @@ export class TodoServiceProvider {
       items.splice(index,1);
     }
   }
+
+  public deleteTodoList(listUuid: String) {
+    this.data.splice(this.data.findIndex(d => d.uuid == listUuid),1);
+  }
 }
