@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TodoItem } from '../todo/todo.model';
 import { TodoServiceProvider } from '../todo/todo.service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ListItemsPage implements OnInit {
 
   @ViewChild('slidingList') slidingList: any;
 
-  constructor(private route: ActivatedRoute, private todoServ: TodoServiceProvider) { }
+  constructor(private route: ActivatedRoute, private todoServ: TodoServiceProvider, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -29,8 +30,27 @@ export class ListItemsPage implements OnInit {
     });
   }
 
-  async delete(tdid : String) {
-    this.todoServ.deleteTodo(this.id, tdid);
+  async delete(tdid : String, nm : String) {
+    const alert = await this.alertCtrl.create({
+      header: 'Warning',
+      subHeader: 'Delete Item',
+      message: 'Are you sure you want to permanently delete the item: "'+nm+'" ?',
+      buttons: [
+        {
+            text: 'No',
+            handler: () => {
+                console.log('Cancel clicked');
+            }
+        },
+        {
+            text: 'Yes',
+            handler: () => {
+              this.todoServ.deleteTodo(this.id, tdid);
+            }
+        }
+    ]
+    });
+    await alert.present();
     await this.slidingList.closeSlidingItems()
   }
 
