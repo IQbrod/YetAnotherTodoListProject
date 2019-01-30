@@ -1,10 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-title>
+       Things To Do
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="resetList()" href="/newlist" routerDirection="forward" color="tertiary">
+          <ion-label>New List</ion-label>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
   <ion-list no-border #slidingList>

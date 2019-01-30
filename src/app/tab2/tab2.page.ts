@@ -42,7 +42,11 @@ export class Tab2Page implements OnInit {
         }
     ]
     });
+    this.resetList();
     await alert.present();
+  }
+
+  async resetList() {
     await this.slidingList.closeSlidingItems();
   }
 }
