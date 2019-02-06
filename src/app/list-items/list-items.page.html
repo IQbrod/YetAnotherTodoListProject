@@ -1,12 +1,16 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button [routerLink]="'/tabs/tab2'" routerDirection="backward">
-          <ion-icon name="arrow-back"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="'/tabs/tab2'" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>{{name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="resetList()" [routerLink]="'/newitem/' + id" routerDirection="forward">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

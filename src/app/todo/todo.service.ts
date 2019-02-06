@@ -97,5 +97,19 @@ export class TodoServiceProvider {
       name: nm,
       items: []
     })
+
+    this.counter = this.counter +1;
+  }
+
+  public addItem(id, title: string, desc: string, done: boolean) {
+    let items = this.data.find(d => d.uuid == id).items;
+    items.push({
+      uuid : this.counter.toString(),
+      name : title,
+      desc : desc,
+      complete : done
+    });
+
+    this.counter = this.counter +1;
   }
 }

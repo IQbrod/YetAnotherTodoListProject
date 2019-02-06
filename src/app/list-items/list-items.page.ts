@@ -51,7 +51,10 @@ export class ListItemsPage implements OnInit {
     ]
     });
     await alert.present();
-    await this.slidingList.closeSlidingItems()
+    await this.resetList();
   }
 
+  async resetList() {
+    await this.slidingList.closeSlidingItems();
+  }
 }

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="'/list-items/' + id" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>New Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label position="stacked">List</ion-label>
+        <ion-input type="text" value="{{name}}" readonly disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input type="text" placeholder="A thing to do" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-input type="text" placeholder="Before monday" [(ngModel)]="desc"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Done</ion-label>
+      <ion-checkbox slot="end" checked="false" [(ngModel)]="done"></ion-checkbox>
+    </ion-item>
+    <div text-center>
+      <ion-button color="tertiary" [disabled]="title.length == 0" (click)="create()" [routerLink]="'/list-items/' + id" routerDirection="backward"> 
+        Create
+        <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      </ion-button>
+    </div>
+</ion-content>
