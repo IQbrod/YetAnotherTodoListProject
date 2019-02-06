@@ -19,7 +19,7 @@ export class Tab2Page implements OnInit {
   }
 
   ngOnInit() {
-    console.log("tab 2 initialisée");
+    
   }
 
   async delete(tdid : String, name : String) {

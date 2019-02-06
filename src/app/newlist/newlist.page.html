@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button href="/tabs/tab2" routerDirection="backward">
+      <ion-button [routerLink]="'/tabs/tab2'" routerDirection="backward">
         <ion-icon name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -16,7 +16,7 @@
       <ion-input type="text" placeholder="A brand new todolist" [(ngModel)]="title"></ion-input>
     </ion-item>
     <div text-center>
-      <ion-button color="tertiary" [disabled]="title.length == 0"> 
+      <ion-button color="tertiary" [disabled]="title.length == 0" (click)="create()" [routerLink]="'/tabs/tab2'" routerDirection="backward"> 
         Create
         <ion-icon slot="end" name="arrow-dropright"></ion-icon>
       </ion-button>

@@ -4,7 +4,7 @@
        Things To Do
       </ion-title>
       <ion-buttons slot="end">
-        <ion-button (click)="resetList()" href="/newlist" routerDirection="forward" color="tertiary">
+        <ion-button (click)="resetList()" [routerLink]="'/newlist/'" routerDirection="forward" color="tertiary">
           <ion-label>New List</ion-label>
         </ion-button>
       </ion-buttons>
@@ -20,7 +20,7 @@
     
     <ion-item-sliding *ngFor="let tdl of todolists">
 
-      <ion-item href="/list-items/{{tdl.uuid}}" routerDirection="forward">
+      <ion-item [routerLink]="'/list-items/'+ tdl.uuid" routerDirection="forward">
         <ion-label>{{tdl.name}}</ion-label>
         <p item-end>{{tdl.items.length}}</p>
       </ion-item>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { TodoServiceProvider } from '../todo/todo.service';
 
 @Component({
   selector: 'app-newlist',
@@ -8,11 +9,15 @@ import { NavController } from '@ionic/angular';
 })
 export class NewlistPage implements OnInit {
 
-  constructor(private navctrl : NavController) {}
+  constructor(private navctrl : NavController, private todoServ : TodoServiceProvider) {}
 
-  public title : String = "";
+  public title : string = "";
 
   ngOnInit() {
+  }
+
+  create() {
+    this.todoServ.createTodoList(this.title);
   }
 
 }
