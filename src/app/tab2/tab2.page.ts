@@ -49,4 +49,10 @@ export class Tab2Page implements OnInit {
   async resetList() {
     await this.slidingList.closeSlidingItems();
   }
+
+  edit(id: String) {
+    this.resetList();
+    this.navctrl.navigateForward('/editlist/'+id);
+  }
+
 }

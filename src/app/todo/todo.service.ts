@@ -72,6 +72,10 @@ export class TodoServiceProvider {
     return Observable.of(this.data.find(d => d.uuid == uuid).name)
   }
 
+  public editListName(listUuid: String, editedName: string) {
+    let lst = this.data.find(d => d.uuid == listUuid);
+    lst.name = editedName;
+  }
 
   public editTodo(listUuid : String, editedItem: TodoItem) {
     let items = this.data.find(d => d.uuid == listUuid).items;
