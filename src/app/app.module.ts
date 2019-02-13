@@ -10,6 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoServiceProvider } from './todo/todo.service';
 
+import * as firebase from 'firebase/app';
+import { environment } from 'src/environments/environment';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -22,4 +26,8 @@ import { TodoServiceProvider } from './todo/todo.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    firebase.initializeApp(environment.firebase);
+  }
+}
