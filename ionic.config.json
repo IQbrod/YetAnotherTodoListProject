@@ -1,5 +1,7 @@
 {
   "name": "todolist-givsaz",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
