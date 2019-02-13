@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'newlist', loadChildren: './newlist/newlist.module#NewlistPageModule' },
   { path: 'newitem/:id', loadChildren: './newitem/newitem.module#NewitemPageModule' },
   { path: 'editlist/:id', loadChildren: './editlist/editlist.module#EditlistPageModule' },
+  { path: 'edititem/:listid/:id', loadChildren: './edititem/edititem.module#EdititemPageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

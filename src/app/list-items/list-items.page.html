@@ -25,6 +25,9 @@
             </ion-label>
         </ion-item>
         <ion-item-options side="end">
+          <ion-item-option color="primary" (click)=edit(tdl.uuid)>
+              <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-item-option>
           <ion-item-option color="danger" (click)=delete(tdl.uuid,tdl.name)>
             <ion-icon slot="icon-only" name="trash"></ion-icon>
           </ion-item-option>

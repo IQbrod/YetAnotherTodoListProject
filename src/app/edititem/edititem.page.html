@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="'/list-items/'+ listid" routerDirection="backward">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Edit Item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input type="text" value="{{oldname}}" [(ngModel)]="todo.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-input type="text" value="{{olddesc}}" [(ngModel)]="todo.desc"></ion-input>
+    </ion-item>
+    <div text-center>
+      <ion-button color="tertiary" [disabled]="todo.name == oldname && todo.desc == olddesc" (click)="edit()" [routerLink]="'/list-items/'+ listid" routerDirection="backward"> 
+        Edit
+        <ion-icon slot="end" name="arrow-dropright"></ion-icon>
+      </ion-button>
+    </div>
+</ion-content>
