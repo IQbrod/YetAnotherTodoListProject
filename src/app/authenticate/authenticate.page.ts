@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/user/auth.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-authenticate',
@@ -12,7 +12,7 @@ export class AuthenticatePage implements OnInit {
   mail: string = "";
   pass: string = "";
 
-  constructor(private auth: AuthService, private navctrl : NavController) { }
+  constructor(private auth: AuthService, private navctrl : NavController,private alertCtrl: AlertController) { }
 
   ngOnInit() {
   }
@@ -23,7 +23,20 @@ export class AuthenticatePage implements OnInit {
         console.log("Login Success")
         this.navctrl.navigateForward('/tabs/tab2');
       },
-      error => {console.log("Login Failed")}
+      error => {this.throwPopup();}
     );
+  }
+
+  async throwPopup() {
+    const alert = await this.alertCtrl.create({
+      header: 'Login',
+      message: 'Failed Login',
+      buttons: [
+        {
+            text: 'Ok',
+        },
+    ]
+    });
+    await alert.present();
   }
 }
