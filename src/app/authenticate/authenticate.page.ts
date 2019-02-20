@@ -27,6 +27,16 @@ export class AuthenticatePage implements OnInit {
     );
   }
 
+  loginGPlus() {
+    this.auth.loginGooglePlus().then(
+      () => {
+        console.log("Login Success");
+        this.navctrl.navigateForward('/tabs/tab2');
+      },
+      error => {}
+    );
+  }
+
   async throwPopup() {
     const alert = await this.alertCtrl.create({
       header: 'Login',

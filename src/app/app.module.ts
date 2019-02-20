@@ -12,14 +12,20 @@ import { TodoServiceProvider } from './todo/todo.service';
 
 import * as firebase from 'firebase/app';
 import { environment } from 'src/environments/environment';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence()],
   providers: [
     StatusBar,
+    GooglePlus,
     SplashScreen,
     TodoServiceProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
