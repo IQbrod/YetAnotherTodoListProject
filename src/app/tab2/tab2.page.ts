@@ -22,7 +22,7 @@ export class Tab2Page implements OnInit {
     
   }
 
-  async delete(tdid : String, name : String) {
+  async delete(tdid : string, name : string) {
     const alert = await this.alertCtrl.create({
       header: 'Warning',
       subHeader: 'Delete List',

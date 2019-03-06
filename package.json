@@ -40,7 +40,7 @@
     "cordova-support-android-plugin": "1.0.1",
     "cordova-support-google-services": "1.2.1",
     "core-js": "^2.5.4",
-    "firebase": "^5.8.3",
+    "firebase": "^5.8.5",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
     "uuid": "^3.3.2",

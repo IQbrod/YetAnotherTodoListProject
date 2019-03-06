@@ -30,7 +30,7 @@ export class ListItemsPage implements OnInit {
     });
   }
 
-  async delete(tdid : String, nm : String) {
+  async delete(tdid : string, nm : string) {
     const alert = await this.alertCtrl.create({
       header: 'Warning',
       subHeader: 'Delete Item',

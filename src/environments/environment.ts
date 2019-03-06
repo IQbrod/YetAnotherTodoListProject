@@ -11,7 +11,6 @@ export const environment = {
     projectId: "todolist-givsaz",
     storageBucket: "todolist-givsaz.appspot.com",
     messagingSenderId: "208139077873"
-
   }
 };
 

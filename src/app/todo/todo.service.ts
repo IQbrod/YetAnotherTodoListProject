@@ -15,7 +15,6 @@ export class TodoServiceProvider {
     this.getList().subscribe( (x : TodoList[]) => {
       this.data = x;
     });
-
   }
 
   /* -- Database Access -- */
@@ -64,31 +63,44 @@ export class TodoServiceProvider {
     })
   }
 
-  public deleteTodo(listUuid: String, uuid: String) {
-    let items = this.data.find(d => d.uuid == listUuid).items;
-    let index = items.findIndex(value => value.uuid == uuid);
+  public deleteTodo(listUuid: string, uuid: string) {
+    let lst = this.data.find(d => d.uuid == listUuid);
+    let index = lst.items.findIndex(value => value.uuid == uuid);
     if (index != -1) {
-      items.splice(index,1);
+      lst.items.splice(index,1);
     }
+
+    this.getTodoList().doc(listUuid).set({
+      uuid: lst.uuid,
+      name: lst.name,
+      items: lst.items
+    })
   }
 
-  public deleteTodoList(listUuid: String) {
-    this.data.splice(this.data.findIndex(d => d.uuid == listUuid),1);
+  public deleteTodoList(listUuid: string) {
+    this.getTodoList().doc(listUuid).delete();
   }
 
   public addItem(id, title: string, desc: string, done: boolean) {
-    let items = this.data.find(d => d.uuid == id).items;
-    items.push({
-      uuid : this.counter.toString(),
+    let lst = this.data.find(d => d.uuid == id);
+    const uid = this.afs.createId();
+
+    lst.items.push({
+      uuid : uid,
       name : title,
       desc : desc,
       complete : done
     });
 
-    this.counter = this.counter +1;
+    this.getTodoList().doc(id).set({
+      uuid: lst.uuid,
+      name: lst.name,
+      items: lst.items  
+    })
+    
   }
 
-  public  createTodoList(nm: String): Promise<any> {
+  public createTodoList(nm: String): Promise<any> {
     const id = this.afs.createId();
 
     return new Promise<any>((resolve, reject) => {
