@@ -2,6 +2,14 @@
 </ion-header>
 
 <ion-content padding>
+  <div text-center>
+    <ion-button color="danger" (click)="loginGPlus()">
+      <ion-icon name="logo-googleplus"></ion-icon>
+    </ion-button>
+    <ion-button color="primary" (click)="loginFacebook()">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-button>
+  </div>
   <ion-item>
     <ion-label position="stacked">User</ion-label>
     <ion-input type="text" placeholder="Mail" [(ngModel)]="mail"></ion-input>
@@ -16,9 +24,4 @@
       <ion-icon slot="end" name="arrow-dropright"></ion-icon>
     </ion-button>
   </div>
-
-  <button ion-button block color="danger" (click)="loginGPlus()">
-    <ion-icon name="logo-googleplus"></ion-icon>
-    Google
-  </button>
 </ion-content>

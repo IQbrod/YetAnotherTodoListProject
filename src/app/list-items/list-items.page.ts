@@ -51,15 +51,20 @@ export class ListItemsPage implements OnInit {
     ]
     });
     await alert.present();
-    await this.resetList();
+    this.resetList();
+    this.navctrl.navigateForward('/list-items/'+this.id);
   }
 
   async resetList() {
     await this.slidingList.closeSlidingItems();
   }
 
-  async edit(uuid: String) {
-    await this.resetList();
+  async edit(uuid: string) {
+    this.resetList();
     this.navctrl.navigateForward('/edititem/'+this.id+'/'+uuid);
+  }
+
+  async checkitem(uuid: string) {
+    this.todoServ.switchitem(this.id,uuid);
   }
 }

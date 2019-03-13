@@ -18,7 +18,7 @@
     <ion-list #slidingList>
       <ion-item-sliding *ngFor="let tdl of mytodos">
         <ion-item>
-            <ion-checkbox checked={{tdl.complete}}></ion-checkbox>
+            <ion-checkbox checked={{tdl.complete}} (click)="checkitem(tdl.uuid)"></ion-checkbox>
             <ion-label>
               <h2>{{tdl.name}}</h2>
               <p>{{tdl.desc}}</p>

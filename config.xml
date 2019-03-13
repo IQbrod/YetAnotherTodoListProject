@@ -87,4 +87,10 @@
         <variable name="REVERSE_CLIENT_ID" value="com.googleusercontent.apps.208139077873-6psqspu1cnralua03ns53qa0n0ndvroc" />
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
+    <plugin name="cordova-plugin-facebook4" spec="4.2.1">
+        <variable name="APP_ID" value="371205810395743" />
+        <variable name="APP_NAME" value="YetAnotherTodoList" />
+        <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
+    </plugin>
 </widget>

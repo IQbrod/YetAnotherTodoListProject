@@ -3,9 +3,11 @@ import 'firebase/auth';
 import { Injectable } from '@angular/core';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { Platform } from '@ionic/angular';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
-/* Login Mail : https://javebratt.com/ionic-firebase-tutorial-auth/ */
+/* Login Mail: https://javebratt.com/ionic-firebase-tutorial-auth/ */
 /* Login Google: https://devdactic.com/google-sign-in-ionic-firebase/ */
+/* Login Facebook: https://blog.ionicframework.com/ionic-firebase-facebook-login/ */
 
 @Injectable({
 	providedIn: 'root',
@@ -14,7 +16,7 @@ export class AuthService {
 
 	userProfile: any = null;
 
-	constructor(private gplus: GooglePlus, private platform: Platform) {
+	constructor(private gplus: GooglePlus, private facebook: Facebook, private platform: Platform) {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				this.userProfile = user;
@@ -40,6 +42,19 @@ export class AuthService {
 			});
 		} else {
 			return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+		}
+	}
+
+	loginFacebook(): Promise<any> {
+		if (this.platform.is('cordova')) {
+			return this.facebook.login(['email']).then( response => {
+				const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+				firebase.auth().signInWithCredential(facebookCredential).then( success => { 
+					console.log("Firebase success: " + JSON.stringify(success)); 
+				});
+			})
+		} else {
+			return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
 		}
 	}
 

@@ -20,7 +20,7 @@
       <ion-input type="text" value="{{olddesc}}" [(ngModel)]="todo.desc"></ion-input>
     </ion-item>
     <div text-center>
-      <ion-button color="tertiary" [disabled]="todo.name == oldname && todo.desc == olddesc" (click)="edit()" [routerLink]="'/list-items/'+ listid" routerDirection="backward"> 
+      <ion-button color="tertiary" [disabled]="todo.name == oldname && todo.desc == olddesc" (click)="edit()" [routerLink]="'/list-items/'+ listid" routerDirection="forward"> 
         Edit
         <ion-icon slot="end" name="arrow-dropright"></ion-icon>
       </ion-button>

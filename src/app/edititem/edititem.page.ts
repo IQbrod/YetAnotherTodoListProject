@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TodoServiceProvider } from '../todo/todo.service';
 import { TodoItem } from '../todo/todo.model';
+import { NavController } from '@ionic/angular';
+import { SelectMultipleControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-edititem',
@@ -17,7 +19,7 @@ export class EdititemPage implements OnInit {
   oldname: String;
   olddesc: String;
 
-  constructor(private route: ActivatedRoute, private todoServ: TodoServiceProvider) { }
+  constructor(private route: ActivatedRoute, private todoServ: TodoServiceProvider, private navctrl : NavController) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');

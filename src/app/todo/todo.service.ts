@@ -111,4 +111,16 @@ export class TodoServiceProvider {
       })
     })
   }
+
+  public switchitem(lid: string, uuid: string) {
+    let lst = this.data.find(d => d.uuid == lid);
+    let index = lst.items.findIndex(value => value.uuid == uuid);
+    lst.items[index].complete = ! lst.items[index].complete;
+
+    this.getTodoList().doc(lid).set({
+      uuid: lst.uuid,
+      name: lst.name,
+      items: lst.items  
+    })
+  }
 }

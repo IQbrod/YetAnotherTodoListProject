@@ -37,6 +37,16 @@ export class AuthenticatePage implements OnInit {
     );
   }
 
+  loginFacebook() {
+    this.auth.loginFacebook().then(
+      () => {
+        console.log("Login Success");
+        this.navctrl.navigateForward('/tabs/tab2');
+      },
+      error => {}
+    );
+  }
+
   async throwPopup() {
     const alert = await this.alertCtrl.create({
       header: 'Login',
