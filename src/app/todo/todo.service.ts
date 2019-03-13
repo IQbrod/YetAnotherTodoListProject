@@ -17,6 +17,15 @@ export class TodoServiceProvider {
     });
   }
 
+  private updateTodoList(tdl: TodoList) {
+    this.getTodoList().doc(tdl.uuid).set({
+      uuid: tdl.uuid,
+      name: tdl.name,
+      items: tdl.items,
+      img : tdl.img
+    })
+  }
+
   /* -- Database Access -- */
   private getTodoList(): AngularFirestoreCollection<TodoList> {
     return this.afs.collection('/todolist');
@@ -43,12 +52,9 @@ export class TodoServiceProvider {
   /* -- Edit distant data -- */
   public editListName(listUuid: string, editedName: string) {
     let lst = this.data.find(d => d.uuid == listUuid);
+    lst.name = editedName;
     // Force update
-    this.getTodoList().doc(listUuid).set({
-      uuid: lst.uuid,
-      name: editedName,
-      items: lst.items
-    })
+    this.updateTodoList(lst);
   }
 
   public editTodo(listUuid : string, editedItem: TodoItem) {
@@ -59,7 +65,8 @@ export class TodoServiceProvider {
     this.getTodoList().doc(listUuid).set({
       uuid: lst.uuid,
       name: lst.name,
-      items: lst.items
+      items: lst.items,
+      img : lst.img
     })
   }
 
@@ -70,11 +77,7 @@ export class TodoServiceProvider {
       lst.items.splice(index,1);
     }
 
-    this.getTodoList().doc(listUuid).set({
-      uuid: lst.uuid,
-      name: lst.name,
-      items: lst.items
-    })
+    this.updateTodoList(lst);
   }
 
   public deleteTodoList(listUuid: string) {
@@ -92,12 +95,7 @@ export class TodoServiceProvider {
       complete : done
     });
 
-    this.getTodoList().doc(id).set({
-      uuid: lst.uuid,
-      name: lst.name,
-      items: lst.items  
-    })
-    
+    this.updateTodoList(lst);    
   }
 
   public createTodoList(nm: String): Promise<any> {
@@ -107,7 +105,8 @@ export class TodoServiceProvider {
       this.afs.doc(`/todolist/${id}`).set({
         uuid: id,
         name: nm,
-        items: []
+        items: [],
+        img: null
       })
     })
   }
@@ -117,10 +116,6 @@ export class TodoServiceProvider {
     let index = lst.items.findIndex(value => value.uuid == uuid);
     lst.items[index].complete = ! lst.items[index].complete;
 
-    this.getTodoList().doc(lid).set({
-      uuid: lst.uuid,
-      name: lst.name,
-      items: lst.items  
-    })
+    this.updateTodoList(lst);
   }
 }

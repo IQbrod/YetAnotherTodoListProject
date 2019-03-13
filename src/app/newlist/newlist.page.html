@@ -15,6 +15,11 @@
       <ion-label position="stacked">Title</ion-label>
       <ion-input type="text" placeholder="A brand new todolist" [(ngModel)]="title"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Image</ion-label>
+      <img src={{currentImage}} alt="No Image Found"/>
+      <ion-button (click)="selectPicture()">Select</ion-button>
+    </ion-item>
     <div text-center>
       <ion-button color="tertiary" [disabled]="title.length == 0" (click)="create()" [routerLink]="'/tabs/tab2'" routerDirection="backward"> 
         Create
