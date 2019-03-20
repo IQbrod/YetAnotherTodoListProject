@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "208139077873",
+    "firebase_url": "https://todolist-givsaz.firebaseio.com",
+    "project_id": "todolist-givsaz",
+    "storage_bucket": "todolist-givsaz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208139077873:android:4c7663baa89370ad",
+        "android_client_info": {
+          "package_name": "io.ionic.yetanothertodolist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208139077873-nedaqhajbjig8lfjj908uh91panj7k72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrBWxFqDlUeSo4WC8FMv1aLx3SjOiH9EA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
