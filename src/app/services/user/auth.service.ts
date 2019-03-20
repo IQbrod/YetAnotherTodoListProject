@@ -31,31 +31,45 @@ export class AuthService {
 	}
 
 	loginGooglePlus(): Promise<any> {
-		if (this.platform.is('cordova')) {
-			return this.gplus.login({
-				'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
-				'offline': true
-			}).then(res => {
-				const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+		return this.gplus.login({
+			'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
+			'offline': true
+		}).then(res => {
+			const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
 
-				firebase.auth().signInWithCredential(googleCredential);
-			});
-		} else {
-			return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-		}
+			firebase.auth().signInWithCredential(googleCredential);
+		});
+		// if (this.platform.is('cordova')) {
+		// 	return this.gplus.login({
+		// 		'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
+		// 		'offline': true
+		// 	}).then(res => {
+		// 		const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+
+		// 		firebase.auth().signInWithCredential(googleCredential);
+		// 	});
+		// } else {
+		// 	return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+		// }
 	}
 
 	loginFacebook(): Promise<any> {
-		if (this.platform.is('cordova')) {
-			return this.facebook.login(['email']).then( response => {
-				const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
-				firebase.auth().signInWithCredential(facebookCredential).then( success => { 
-					console.log("Firebase success: " + JSON.stringify(success)); 
-				});
-			})
-		} else {
-			return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
-		}
+		return this.facebook.login(['email']).then( response => {
+			const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+			firebase.auth().signInWithCredential(facebookCredential).then( success => { 
+				console.log("Firebase success: " + JSON.stringify(success)); 
+			});
+		});
+		// if (this.platform.is('cordova')) {
+		// 	return this.facebook.login(['email']).then( response => {
+		// 		const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
+		// 		firebase.auth().signInWithCredential(facebookCredential).then( success => { 
+		// 			console.log("Firebase success: " + JSON.stringify(success)); 
+		// 		});
+		// 	})
+		// } else {
+		// 	return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+		// }
 	}
 
 	signupUser(email: string, password: string): Promise<any> {
