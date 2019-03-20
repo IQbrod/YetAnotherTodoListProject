@@ -23,7 +23,9 @@ export class AuthenticatePage implements OnInit {
         console.log("Login Success")
         this.navctrl.navigateForward('/tabs/tab2');
       },
-      error => {this.throwPopup(error);}
+      error => {
+        this.mail = error.toString();
+      }
     );
   }
 
@@ -33,7 +35,9 @@ export class AuthenticatePage implements OnInit {
         console.log("Login Success");
         this.navctrl.navigateForward('/tabs/tab2');
       },
-      error => {this.throwPopup(error);}
+      error => {
+        this.mail = error.toString();
+      }
     );
   }
 
@@ -47,18 +51,5 @@ export class AuthenticatePage implements OnInit {
         this.mail = error.toString();
       }
     );
-  }
-
-  async throwPopup(msg: any) {
-    const alert = await this.alertCtrl.create({
-      header: 'Login',
-      message: msg,
-      buttons: [
-        {
-            text: 'Ok',
-        },
-    ]
-    });
-    await alert.present();
   }
 }

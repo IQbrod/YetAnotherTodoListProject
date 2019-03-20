@@ -31,14 +31,7 @@ export class AuthService {
 	}
 
 	loginGooglePlus(): Promise<any> {
-		return this.gplus.login({
-			'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
-			'offline': true
-		}).then(res => {
-			const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
-
-			firebase.auth().signInWithCredential(googleCredential);
-		});
+		return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
 		// if (this.platform.is('cordova')) {
 		// 	return this.gplus.login({
 		// 		'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
@@ -54,12 +47,7 @@ export class AuthService {
 	}
 
 	loginFacebook(): Promise<any> {
-		return this.facebook.login(['email']).then( response => {
-			const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
-			firebase.auth().signInWithCredential(facebookCredential).then( success => { 
-				console.log("Firebase success: " + JSON.stringify(success)); 
-			});
-		});
+		return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider());
 		// if (this.platform.is('cordova')) {
 		// 	return this.facebook.login(['email']).then( response => {
 		// 		const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
