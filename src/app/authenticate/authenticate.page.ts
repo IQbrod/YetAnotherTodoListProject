@@ -23,7 +23,7 @@ export class AuthenticatePage implements OnInit {
         console.log("Login Success")
         this.navctrl.navigateForward('/tabs/tab2');
       },
-      error => {this.throwPopup();}
+      error => {this.throwPopup(error);}
     );
   }
 
@@ -33,35 +33,26 @@ export class AuthenticatePage implements OnInit {
         console.log("Login Success");
         this.navctrl.navigateForward('/tabs/tab2');
       },
-      error => {}
+      error => {this.throwPopup(error);}
     );
   }
 
-  async loginFacebook() {
+  loginFacebook() {
     this.auth.loginFacebook().then(
       () => {
         console.log("Login Success");
         this.navctrl.navigateForward('/tabs/tab2');
       },
-      async error => {
-        const alert = await this.alertCtrl.create({
-          header: 'Login',
-          message: error,
-          buttons: [
-            {
-                text: 'Ok',
-            },
-        ]
-        });
-        await alert.present();
+      error => {
+        this.throwPopup(error);
       }
     );
   }
 
-  async throwPopup() {
+  async throwPopup(message: string) {
     const alert = await this.alertCtrl.create({
       header: 'Login',
-      message: 'Failed Login',
+      message: message,
       buttons: [
         {
             text: 'Ok',
