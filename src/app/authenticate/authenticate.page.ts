@@ -44,7 +44,7 @@ export class AuthenticatePage implements OnInit {
         this.navctrl.navigateForward('/tabs/tab2');
       },
       error => {
-        this.throwPopup(error);
+        this.mail = error.toString();
       }
     );
   }
