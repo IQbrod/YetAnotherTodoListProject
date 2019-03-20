@@ -49,10 +49,10 @@ export class AuthenticatePage implements OnInit {
     );
   }
 
-  async throwPopup(message: any) {
+  async throwPopup(msg: any) {
     const alert = await this.alertCtrl.create({
       header: 'Login',
-      message: message.toString(),
+      message: msg,
       buttons: [
         {
             text: 'Ok',
