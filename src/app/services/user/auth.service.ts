@@ -31,14 +31,7 @@ export class AuthService {
 	}
 
 	loginGooglePlus(): Promise<any> {
-		return this.gplus.login({
-	 		'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
-	 		'offline': true
-		}).then(res => {
-			const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
-			firebase.auth().signInWithCredential(googleCredential);
-		});
-		//return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+		return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
 		// if (this.platform.is('cordova')) {
 		// 	return this.gplus.login({
 		// 		'webClientId': '208139077873-6psqspu1cnralua03ns53qa0n0ndvroc.apps.googleusercontent.com',
