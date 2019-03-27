@@ -98,7 +98,7 @@ export class TodoServiceProvider {
     this.updateTodoList(lst);    
   }
 
-  public createTodoList(nm: String): Promise<any> {
+  public createTodoList(nm: String, imgid: string): Promise<any> {
     const id = this.afs.createId();
 
     return new Promise<any>((resolve, reject) => {
@@ -106,7 +106,7 @@ export class TodoServiceProvider {
         uuid: id,
         name: nm,
         items: [],
-        img: null
+        img: imgid
       })
     })
   }

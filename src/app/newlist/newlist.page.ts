@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoServiceProvider } from '../todo/todo.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase/app';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-newlist',
@@ -10,17 +11,18 @@ import * as firebase from 'firebase/app';
 })
 export class NewlistPage implements OnInit {
 
-  constructor(private camera: Camera, private todoServ : TodoServiceProvider) {}
+  constructor(private camera: Camera, private todoServ : TodoServiceProvider, private afs: AngularFirestore) {}
 
   public title : string = "";
   public currentImage : any = null;
   public selectedPhoto;
+  public imgid = null;
 
   ngOnInit() {
   }
 
   create() {
-    this.todoServ.createTodoList(this.title);
+    this.todoServ.createTodoList(this.title, this.imgid);
   }
 
   selectPicture() {
@@ -34,8 +36,15 @@ export class NewlistPage implements OnInit {
     }
 
     this.camera.getPicture(options).then((imageData) => {
-      this.selectedPhoto  = this.dataURItoBlob('data:image/jpeg;base64,' + imageData);
-      this.upload();
+      this.selectedPhoto = this.dataURItoBlob('data:image/jpeg;base64,' + imageData);
+      // UPLOAD
+      if (this.selectedPhoto) {
+        this.imgid = this.afs.createId();
+        firebase.storage().ref().child('images/'+this.imgid+'.png').put(this.selectedPhoto).then(
+          () => {
+            this.currentImage = this.selectedPhoto;
+          });       
+      }
     }, (err) => {
       console.log('error', err);
     });
@@ -48,19 +57,6 @@ export class NewlistPage implements OnInit {
       array.push(binary.charCodeAt(i));
     }
     return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
-  }
-
-  upload() {
-    if (this.selectedPhoto) {
-      var uploadTask = firebase.storage().ref().child('images/uploaded.png')
-        .put(this.selectedPhoto);
-      uploadTask.then((snapshot) => {
-        this.currentImage = snapshot.downloadURL;
-      }),
-      (error) => {
-        console.log("error", error);
-      }
-    }
   }
 
 }
