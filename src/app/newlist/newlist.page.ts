@@ -42,7 +42,12 @@ export class NewlistPage implements OnInit {
         this.imgid = this.afs.createId();
         firebase.storage().ref().child('images/'+this.imgid+'.png').put(this.selectedPhoto).then(
           () => {
-            this.currentImage = this.selectedPhoto;
+            firebase.storage().ref().child('images/'+this.imgid+'.png').getDownloadURL().then(function(myImage) {            
+              // Or inserted into an <img> element:
+              this.currentImage.src = myImage;
+            }).catch(function(error) {
+              // Handle any errors
+            });
           });       
       }
     }, (err) => {
