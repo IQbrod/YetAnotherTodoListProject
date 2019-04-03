@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TodoItem } from '../todo/todo.model';
 import { TodoServiceProvider } from '../todo/todo.service';
 import { AlertController, NavController } from '@ionic/angular';
+import * as firebase from 'firebase/app';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ListItemsPage implements OnInit {
 
   id: string;
   name: string;
+  img: string;
   mytodos: TodoItem[];
 
   @ViewChild('slidingList') slidingList: any;
@@ -27,6 +29,11 @@ export class ListItemsPage implements OnInit {
     });
     this.todoServ.getName(this.id).subscribe((n : string) => {
       this.name = n;   
+    });
+    this.todoServ.getImg(this.id).subscribe((i : string) => {
+      firebase.storage().ref().child("images/" + i + ".png").getDownloadURL()
+      .then(response => this.img = response)
+      .catch(error => console.log('error', error))
     });
   }
 

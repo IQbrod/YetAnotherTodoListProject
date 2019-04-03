@@ -44,6 +44,10 @@ export class TodoServiceProvider {
     return Observable.of(this.data.find(d => d.uuid == uuid).name)
   }
 
+  public getImg(uuid:String) : Observable<String> {
+    return Observable.of(this.data.find(d => d.uuid == uuid).img)
+  }
+
   public getTodo(listUuid: String, uuid: String) : Observable<TodoItem> {
     let items = this.data.find(d => d.uuid == listUuid).items;
     return Observable.of(items.find(t => t.uuid == uuid));

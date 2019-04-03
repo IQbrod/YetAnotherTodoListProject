@@ -14,7 +14,7 @@ export class NewlistPage implements OnInit {
   constructor(private camera: Camera, private todoServ : TodoServiceProvider, private afs: AngularFirestore) {}
 
   public title : string = "";
-  public currentImage : any = null;
+  public currentImage : string = "";
   public selectedPhoto;
   public imgid = null;
 
@@ -44,7 +44,7 @@ export class NewlistPage implements OnInit {
           () => {
             firebase.storage().ref().child('images/'+this.imgid+'.png').getDownloadURL().then(function(myImage) {            
               // Or inserted into an <img> element:
-              this.currentImage.src = myImage;
+              this.currentImage = myImage;
             }).catch(function(error) {
               // Handle any errors
             });

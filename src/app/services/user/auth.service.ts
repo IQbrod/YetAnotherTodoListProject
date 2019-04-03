@@ -34,7 +34,6 @@ export class AuthService {
 		//return firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
 		if (this.platform.is('cordova')) {
 			try {
-				console.log("1");
 				const gplog = await this.gplus.login({
 					'webClientId': '208139077873-nedaqhajbjig8lfjj908uh91panj7k72.apps.googleusercontent.com',
 					'offline': true
@@ -42,11 +41,8 @@ export class AuthService {
 					res => {console.log("res", res); return res;},
 					err => {console.error("err", err); return undefined;}
 				);
-				console.log("gplog:", gplog);
 				const googleCredential = firebase.auth.GoogleAuthProvider.credential(gplog.idToken);
-				console.log("usercred", googleCredential);
 				const user = firebase.auth().signInWithCredential(googleCredential);
-				console.log("user:", user);
 				return user;
 			} catch(e) {
 				console.error(e);
@@ -58,7 +54,7 @@ export class AuthService {
 		}
 	}
 
-	loginFacebook(): Promise<any> {
+	async loginFacebook(): Promise<any> {
 		if (this.platform.is('cordova')) {
 			return this.facebook.login(['email']).then( response => {
 				const facebookCredential = firebase.auth.FacebookAuthProvider.credential(response.authResponse.accessToken);
