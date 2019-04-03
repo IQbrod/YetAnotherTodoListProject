@@ -4,6 +4,8 @@ Lancer l'emulateur : ionic serve -l
 Installer une plateforme android : ionic cordova platform add android
 Installer et lancer l'appli sur le smartphone : ionic cordova run android
 
+L'apk est disponible à la racine du projet
+
 Fonctionnalités :
 Todolist complète : création, édition, suppresion liste
 Item de liste : création, édition, suppression item
